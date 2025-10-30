@@ -1,0 +1,134 @@
+[
+  {
+    "id": "q1",
+    "prompt": "É possível se infectar HIV em situações como dar a mão, usar banheiro público ou ficar perto de alguém que tosse?",
+    "choices": [
+      "O vírus pode circular no ar ou por contato físico direto.",
+      "Há risco quando se compartilham roupas, toalhas ou copos.",
+      "A transmissão acontece somente por fluidos corporais específicos, como em relações sexuais sem o uso do preservativo ou PrEP, pelo compartilhamento de seringas contaminadas ou via transmissão vertical (durante a gravidez, parto ou amamentação).",
+      "Contatos sociais próximos, como abraços ou beijos, já são suficientes para a transmissão."
+    ],
+    "correctIndex": 2,
+    "explanation": ""
+  },
+  {
+    "id": "q2",
+    "prompt": "HIV e aids são a mesma coisa?",
+    "choices": [
+      "O HIV é o vírus; a aids é o estágio avançado da infecção, quando o sistema imunológico já está comprometido.",
+      "Os dois nomes se referem exatamente à mesma doença.",
+      "HIV é apenas o termo científico usado no lugar de aids.",
+      "Ter HIV significa, automaticamente, estar em fase de aids."
+    ],
+    "correctIndex": 0,
+    "explanation": ""
+  },
+  {
+    "id": "q3",
+    "prompt": "O beijo pode transmitir HIV?",
+    "choices": [
+      "Sim, o beijo pode transmitir por causa da saliva, mas apenas em beijos profundos.",
+      "O vírus pode passar caso a outra pessoa esteja gripada ou tossindo.",
+      "O beijo, assim como abraços e o compartilhamento de talheres, não representa risco de infecção pelo HIV.",
+      "Qualquer contato social próximo tem potencial de transmissão."
+    ],
+    "correctIndex": 2,
+    "explanation": ""
+  },
+  {
+    "id": "q4",
+    "prompt": "Um mosquito pode transmitir HIV ao picar diferentes pessoas?",
+    "choices": [
+      "Em áreas tropicais, onde há muitos mosquitos, o risco é maior.",
+      "Como eles picam várias pessoas, acabam carregando sangue contaminado de uma para outra.",
+      "Mosquitos não transmitem HIV, pois o vírus não sobrevive nem se multiplica dentro deles.",
+      "Só haveria transmissão se a pessoa tivesse alta carga viral no sangue."
+    ],
+    "correctIndex": 2,
+    "explanation": ""
+  },
+  {
+    "id": "q5",
+    "prompt": "O HIV é restrito a grupos específicos, como pessoas homossexuais ou usuárias de drogas injetáveis?",
+    "choices": [
+      "A infecção pode ocorrer em qualquer pessoa.",
+      "O vírus só circula entre populações consideradas de “alto risco”.",
+      "Está presente exclusivamente entre homens que fazem sexo com homens.",
+      "Afeta apenas pessoas que usam drogas injetáveis."
+    ],
+    "correctIndex": 0,
+    "explanation": ""
+  },
+  {
+    "id": "q6",
+    "prompt": "É possível identificar uma pessoa vivendo com HIV apenas pela aparência física?",
+    "choices": [
+      "Existem sinais típicos, visíveis em todos os casos.",
+      "Mudanças no corpo ou no comportamento já são suficientes para suspeitar.",
+      "Apenas o teste pode confirmar a infecção.",
+      "Pessoas com HIV ou aids sempre apresentam sintomas claros desde o início."
+    ],
+    "correctIndex": 2,
+    "explanation": ""
+  },
+  {
+    "id": "q7",
+    "prompt": "Qual é a eficácia dos preservativos na prevenção do HIV?",
+    "choices": [
+      "Quando usados de forma correta, são altamente eficazes contra HIV, outras ISTs e gravidez indesejada.",
+      "O vírus atravessa o látex, reduzindo bastante a proteção.",
+      "Somente os preservativos masculinos funcionam; os femininos não oferecem segurança.",
+      "Isoladamente, não protegem; só funcionam quando combinados com outros métodos."
+    ],
+    "correctIndex": 0,
+    "explanation": ""
+  },
+  {
+    "id": "q8",
+    "prompt": "Qual a importância de fazer o teste de HIV?",
+    "choices": [
+      "Serve apenas para quem apresenta sintomas da doença.",
+      "Se o resultado for positivo, não há muito a ser feito.",
+      "Permite conhecer o diagnóstico da infecção pelo HIV e iniciar o tratamento rapidamente.",
+      "O teste substitui o uso do preservativo."
+    ],
+    "correctIndex": 2,
+    "explanation": ""
+  },
+  {
+    "id": "q9",
+    "prompt": "O que significa a sigla i = i = 0 (indetectável = intransmissível = zero)?",
+    "choices": [
+      "Que a pessoa não tem mais HIV no organismo.",
+      "Que pessoas vivendo com HIV ou aids que estão em uso regular do tratamento e atingem carga viral indetectável, não transmitem o HIV nas relações sexuais.",
+      "Que a infecção foi curada.",
+      "Que não há mais necessidade de usar preservativos ou continuar tomando os medicamentos."
+    ],
+    "correctIndex": 1,
+    "explanation": ""
+  },
+  {
+    "id": "q10",
+    "prompt": "Uma pessoa vivendo com HIV ou aids pode transmitir o vírus para o bebê durante a gestação ou amamentação?",
+    "choices": [
+      "O risco existe apenas se o parto não for cesariana.",
+      "Não há risco em nenhuma situação.",
+      "Sem tratamento, há possibilidade de transmissão vertical, mas com a terapia correta e carga viral indetectável, o risco é praticamente zero.",
+      "Toda gestação de pessoa vivendo com HIV ou aids resulta em transmissão para o bebê."
+    ],
+    "correctIndex": 2,
+    "explanation": ""
+  },
+  {
+    "id": "q11",
+    "prompt": "Já existe cura ou vacina para HIV e aids?",
+    "choices": [
+      "Há uma vacina já disponível e em uso.",
+      "Ainda não existe cura, mas os antirretrovirais mantêm a carga viral indetectável, sem risco de comprometimento da imunidade.",
+      "Existe cura parcial, disponível em alguns países.",
+      "Uma vacina foi criada, mas apresenta eficácia muito baixa."
+    ],
+    "correctIndex": 1,
+    "explanation": ""
+  }
+]

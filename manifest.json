@@ -1,0 +1,24 @@
+{
+  "lang": "pt-BR",
+  "name": "Quiz da Prevenção de HIV e Aids",
+  "short_name": "Quiz HIV",
+  "description": "Teste seus conhecimentos sobre prevenção do HIV e da aids neste quiz interativo.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#1e293b",
+  "background_color": "#0f172a",
+  "icons": [
+    {
+      "src": "/assets/img/hero.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/hero.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "orientation": "portrait-primary"
+}

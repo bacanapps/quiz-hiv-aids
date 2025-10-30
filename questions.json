@@ -9,7 +9,7 @@
       "Contatos sociais próximos, como abraços ou beijos, já são suficientes para a transmissão."
     ],
     "correctIndex": 2,
-    "explanation": ""
+    "audio": "q1.mp3"
   },
   {
     "id": "q2",
@@ -21,7 +21,7 @@
       "Ter HIV significa, automaticamente, estar em fase de aids."
     ],
     "correctIndex": 0,
-    "explanation": ""
+    "audio": "q2.mp3"
   },
   {
     "id": "q3",
@@ -33,7 +33,7 @@
       "Qualquer contato social próximo tem potencial de transmissão."
     ],
     "correctIndex": 2,
-    "explanation": ""
+    "audio": "q3.mp3"
   },
   {
     "id": "q4",
@@ -45,19 +45,19 @@
       "Só haveria transmissão se a pessoa tivesse alta carga viral no sangue."
     ],
     "correctIndex": 2,
-    "explanation": ""
+    "audio": "q4.mp3"
   },
   {
     "id": "q5",
     "prompt": "O HIV é restrito a grupos específicos, como pessoas homossexuais ou usuárias de drogas injetáveis?",
     "choices": [
       "A infecção pode ocorrer em qualquer pessoa.",
-      "O vírus só circula entre populações consideradas de “alto risco”.",
+      "O vírus só circula entre populações consideradas de \"alto risco\".",
       "Está presente exclusivamente entre homens que fazem sexo com homens.",
       "Afeta apenas pessoas que usam drogas injetáveis."
     ],
     "correctIndex": 0,
-    "explanation": ""
+    "audio": "q5.mp3"
   },
   {
     "id": "q6",
@@ -69,7 +69,7 @@
       "Pessoas com HIV ou aids sempre apresentam sintomas claros desde o início."
     ],
     "correctIndex": 2,
-    "explanation": ""
+    "audio": "q6.mp3"
   },
   {
     "id": "q7",
@@ -81,7 +81,7 @@
       "Isoladamente, não protegem; só funcionam quando combinados com outros métodos."
     ],
     "correctIndex": 0,
-    "explanation": ""
+    "audio": "q7.mp3"
   },
   {
     "id": "q8",
@@ -93,7 +93,7 @@
       "O teste substitui o uso do preservativo."
     ],
     "correctIndex": 2,
-    "explanation": ""
+    "audio": "q8.mp3"
   },
   {
     "id": "q9",
@@ -105,7 +105,7 @@
       "Que não há mais necessidade de usar preservativos ou continuar tomando os medicamentos."
     ],
     "correctIndex": 1,
-    "explanation": ""
+    "audio": "q9.mp3"
   },
   {
     "id": "q10",
@@ -117,7 +117,7 @@
       "Toda gestação de pessoa vivendo com HIV ou aids resulta em transmissão para o bebê."
     ],
     "correctIndex": 2,
-    "explanation": ""
+    "audio": "q10.mp3"
   },
   {
     "id": "q11",
@@ -129,6 +129,6 @@
       "Uma vacina foi criada, mas apresenta eficácia muito baixa."
     ],
     "correctIndex": 1,
-    "explanation": ""
+    "audio": "q11.mp3"
   }
 ]

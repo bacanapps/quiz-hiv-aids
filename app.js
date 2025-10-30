@@ -9,6 +9,13 @@ let currentAudio = null; // Track currently playing audio
 let selectedAnswer = null; // Track selected answer for current question
 let presentationData = null; // Cache presentation content
 
+function stopCurrentAudio() {
+  if (!currentAudio) return;
+  currentAudio.pause();
+  currentAudio.currentTime = 0;
+  currentAudio = null;
+}
+
 // --- load questions.json once ---
 async function loadQuestions() {
   if (allQuestions.length > 0) return;
@@ -234,6 +241,7 @@ async function startQuiz() {
   currentIndex = 0;
   score = 0;
   selectedAnswer = null;
+  stopCurrentAudio();
   go('/quiz');
 }
 
@@ -252,6 +260,7 @@ function nextQuestion() {
   
   // Reset selection for next question
   selectedAnswer = null;
+  stopCurrentAudio();
   
   currentIndex++;
   if (currentIndex >= selectedQuestions.length) {
@@ -274,11 +283,7 @@ function playAudioFor(audioFile) {
   const src = audioFile.includes('/') ? audioFile : `./audio/${audioFile}`;
 
   // Stop any currently playing audio
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
-    currentAudio = null;
-  }
+  stopCurrentAudio();
   
   // Create and play new audio
   currentAudio = new Audio(src);

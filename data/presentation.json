@@ -1,0 +1,10 @@
+{
+  "title": "Quiz da Prevenção de HIV e Aids",
+  "introHtml": "<p>Embora as pessoas digam ter boas informações sobre o HIV e a aids, na prática muitas ideias falsas continuam circulando. Quarenta anos após os primeiros casos de HIV, infelizmente, o estigma e a discriminação permanecem na sociedade.</p><p>Os avanços científicos evidenciam que não há risco de transmissão sexual do HIV quando as pessoas fazem uso regular da terapia antirretroviral, mantendo carga viral indetectável. Apesar disso, os equívocos persistem. Pior: a falta de informação aumenta, especialmente entre os jovens, que estão particularmente expostos.</p><p>Este quiz foi proposto com o objetivo de desfazer mitos em torno do HIV e encorajar as pessoas a se informarem, fazerem o teste, se prevenirem e conhecerem os direitos das pessoas vivendo com HIV ou aids.</p>",
+  "audioDescription": {
+    "src": "assets/audio/presentation.mp3",
+    "durationSec": 30
+  },
+  "heroImage": "assets/img/hero.png",
+  "credits": []
+}

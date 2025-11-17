@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <!-- PWA manifest and favicon -->
+  <link rel="manifest" href="manifest.json" />
+  <!-- Use the hero image as the app icon for now -->
+  <link rel="icon" href="assets/img/hero.png" />
+  <title>Quiz da Prevenção de HIV e Aids</title>
+  <meta name="description" content="Teste seus conhecimentos sobre prevenção do HIV e da aids neste quiz interativo e divertido." />
+  <!-- External libraries via CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2/dist/tailwind.min.css" rel="stylesheet">
+  <!-- App styles (modular, overrides Tailwind where needed) -->
+  <link rel="stylesheet" href="assets/styles.css">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX'); // Replace with your GA4 Measurement ID
+  </script>
+  <script>
+    console.log('Page loading...');
+    window.onerror = function(msg, url, lineNo, columnNo, error) {
+      console.error('Error: ' + msg + '\nURL: ' + url + '\nLine: ' + lineNo + '\nColumn: ' + columnNo + '\nError object: ' + JSON.stringify(error));
+      return false;
+    };
+  </script>
+  
+  <!-- Load React -->
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script>
+    // Verify React is loaded
+    console.log('React version:', React.version);
+    console.log('ReactDOM version:', ReactDOM.version);
+  </script>
+  
+  <!-- Load other dependencies -->
+  <script src="https://unpkg.com/howler/dist/howler.min.js"></script>
+  <!-- React Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/react-confetti@6.1.0/dist/react-confetti.min.js"></script>
+  <!-- Modern styles moved to assets/styles.css -->
+  
+</head>
+<body class="">
+  <noscript>Você precisa habilitar o JavaScript para usar este aplicativo.</noscript>
+  <div id="root"></div>
+  <script>
+    // Create a simple loading indicator
+    const root = document.getElementById('root');
+    root.innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 100vh;"><div>Carregando...</div></div>';
+    
+    // Load app after React is available
+    window.addEventListener('load', function() {
+      console.log('Window loaded');
+      console.log('React available:', typeof React !== 'undefined');
+      console.log('ReactDOM available:', typeof ReactDOM !== 'undefined');
+      
+      if (typeof React === 'undefined' || typeof ReactDOM === 'undefined') {
+        console.error('React or ReactDOM not loaded');
+        root.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Erro ao carregar as bibliotecas necessárias</div>';
+        return;
+      }
+      
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'app.js';
+      console.log('Loading test script...');
+      script.onload = () => {
+        console.log('Test script loaded successfully');
+        // Force a render attempt after a short delay
+        setTimeout(() => {
+          console.log('Attempting delayed render');
+          if (window.renderTestComponent) {
+            window.renderTestComponent();
+          }
+        }, 100);
+      };
+      script.onerror = (e) => {
+        console.error('Failed to load test script:', e);
+        root.innerHTML = '<div style="color: red; text-align: center; padding: 20px;">Erro ao carregar a aplicação</div>';
+      };
+      document.body.appendChild(script);
+    });
+  </script>
+</body>
+</html>

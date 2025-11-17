@@ -61,6 +61,16 @@
   function toggleAudio(src) {
     console.log('Toggle audio called with src:', src);
 
+    // If clicking a different audio, always stop the current one first
+    if (currentSound && currentAudioSrc !== src) {
+      console.log('Stopping different audio before starting new one');
+      currentSound.stop();
+      currentSound.unload();
+      currentSound = null;
+      currentAudioSrc = null;
+      notifyAudioStateChange();
+    }
+
     // If toggling the same audio that's currently playing, pause it
     if (currentSound && currentAudioSrc === src && currentSound.playing()) {
       console.log('Pausing current audio');
@@ -77,16 +87,7 @@
       return;
     }
 
-    // If toggling a different audio, stop the current and start new
-    if (currentSound) {
-      console.log('Stopping previous audio');
-      currentSound.stop();
-      currentSound.unload();
-      currentSound = null;
-      currentAudioSrc = null;
-      notifyAudioStateChange();
-    }
-
+    // Create and play new audio
     console.log('Creating new Howl instance for:', src);
     currentSound = new Howl({
       src: [src],

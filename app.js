@@ -230,7 +230,18 @@
         React.createElement('a', {
           href: '#',
           className: 'back-link',
-          onClick: (e) => { e.preventDefault(); onBack(); }
+          onClick: (e) => {
+            e.preventDefault();
+            // Stop any playing audio when navigating back
+            if (currentSound && currentSound.playing()) {
+              currentSound.stop();
+              currentSound.unload();
+              currentSound = null;
+              currentAudioSrc = null;
+              notifyAudioStateChange();
+            }
+            onBack();
+          }
         }, '← Voltar'),
         React.createElement('h1', { className: 'page-title' }, 'Quiz da Prevenção de HIV e Aids'),
         React.createElement('button', {
@@ -304,6 +315,15 @@
     }
 
     function handleNext() {
+      // Stop any currently playing audio before moving to next question
+      if (currentSound && currentSound.playing()) {
+        currentSound.stop();
+        currentSound.unload();
+        currentSound = null;
+        currentAudioSrc = null;
+        notifyAudioStateChange();
+      }
+
       if (currentIndex < selected.length - 1) {
         setCurrentIndex(currentIndex + 1);
         setSelectedOption(null);
@@ -485,22 +505,61 @@
     }
 
     function handleQuizComplete(score) {
+      // Stop any playing audio when completing quiz
+      if (currentSound && currentSound.playing()) {
+        currentSound.stop();
+        currentSound.unload();
+        currentSound = null;
+        currentAudioSrc = null;
+        notifyAudioStateChange();
+      }
       setFinalScore(score);
       setPage('result');
     }
 
     function handleRestart() {
+      // Stop any playing audio when restarting
+      if (currentSound && currentSound.playing()) {
+        currentSound.stop();
+        currentSound.unload();
+        currentSound = null;
+        currentAudioSrc = null;
+        notifyAudioStateChange();
+      }
       setFinalScore(0);
       setPage('home');
     }
 
+    // Helper to stop audio before navigation
+    function handleNavigate(newPage) {
+      // Stop any playing audio when navigating
+      if (currentSound && currentSound.playing()) {
+        currentSound.stop();
+        currentSound.unload();
+        currentSound = null;
+        currentAudioSrc = null;
+        notifyAudioStateChange();
+      }
+      setPage(newPage);
+    }
+
     let content = null;
     if (page === 'home') {
-      content = React.createElement(Home, { onNavigate: setPage, theme, toggleTheme });
+      content = React.createElement(Home, { onNavigate: handleNavigate, theme, toggleTheme });
     } else if (page === 'presentation') {
       content = React.createElement(PresentationPage, {
         presentation,
-        onBack: () => setPage('home'),
+        onBack: () => {
+          // Stop any playing audio when navigating back
+          if (currentSound && currentSound.playing()) {
+            currentSound.stop();
+            currentSound.unload();
+            currentSound = null;
+            currentAudioSrc = null;
+            notifyAudioStateChange();
+          }
+          setPage('home');
+        },
         theme, toggleTheme
       });
     } else if (page === 'quiz') {

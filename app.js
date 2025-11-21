@@ -211,6 +211,10 @@
             )
           )
         )
+      ),
+
+      React.createElement('div', { className: 'app-footer-line' },
+        '© 2025 Dezembro Vermelho • Ministério da Saúde'
       )
     );
   }
@@ -410,7 +414,11 @@
         className: 'theme-toggle-btn',
         onClick: toggleTheme,
         'aria-label': 'Alternar tema'
-      }, theme === 'light' ? '🌙' : '☀️')
+      }, theme === 'light' ? '🌙' : '☀️'),
+
+      React.createElement('div', { className: 'app-footer-line' },
+        '© 2025 Dezembro Vermelho • Ministério da Saúde'
+      )
     );
   }
 
@@ -459,7 +467,11 @@
         className: 'theme-toggle-btn',
         onClick: toggleTheme,
         'aria-label': 'Alternar tema'
-      }, theme === 'light' ? '🌙' : '☀️')
+      }, theme === 'light' ? '🌙' : '☀️'),
+
+      React.createElement('div', { className: 'app-footer-line' },
+        '© 2025 Dezembro Vermelho • Ministério da Saúde'
+      )
     );
   }
 

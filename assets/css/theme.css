@@ -972,3 +972,13 @@ button.border-blue-500 {
 :root[data-theme="dark"] .quiz-result-thanks {
   color: #9ca3af;
 }
+
+/* Footer */
+.app-footer-line {
+  border-top: 1px solid var(--color-border-card);
+  padding: 1rem;
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  text-align: center;
+  margin-top: 2rem;
+}

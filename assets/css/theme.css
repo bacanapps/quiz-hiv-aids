@@ -937,3 +937,28 @@ button.border-blue-500 {
   align-items: center;
   gap: .5rem;
 }
+
+/* Quiz Result Page Styles */
+.quiz-result-title {
+  color: #ff0000;
+}
+
+:root[data-theme="dark"] .quiz-result-title {
+  color: #ffffff;
+}
+
+.quiz-result-message {
+  color: #1f2937;
+}
+
+:root[data-theme="dark"] .quiz-result-message {
+  color: #d1d5db;
+}
+
+.quiz-result-thanks {
+  color: #6b7280;
+}
+
+:root[data-theme="dark"] .quiz-result-thanks {
+  color: #9ca3af;
+}

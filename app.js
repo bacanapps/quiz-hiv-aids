@@ -435,20 +435,22 @@
         })
       : null;
 
-    return React.createElement('div', { className: 'min-h-screen fade-in flex flex-col items-center justify-center text-center px-6', style: { position: 'relative' } },
+    return React.createElement('div', { className: 'min-h-screen fade-in flex flex-col items-center justify-center px-6', style: { position: 'relative' } },
       confetti,
-      React.createElement('h2', { className: 'text-3xl md:text-4xl font-bold mb-4' }, 'Você concluiu o quiz!'),
-      React.createElement('div', { className: 'text-2xl font-bold mb-4 text-green-500' }, 
-        `Pontuação: ${score}/5 (${percentage}%)`
+      React.createElement('div', { className: 'presentation-card text-center' },
+        React.createElement('h2', { className: 'text-3xl md:text-4xl font-bold mb-4 quiz-result-title' }, 'Você concluiu o quiz!'),
+        React.createElement('div', { className: 'text-2xl font-bold mb-4 text-green-500' },
+          `Pontuação: ${score}/5 (${percentage}%)`
+        ),
+        React.createElement('p', { className: 'text-lg mb-8 quiz-result-message' }, message),
+        React.createElement('p', { className: 'text-base mb-8 quiz-result-thanks' },
+          'Obrigado por participar. Esperamos que você tenha aprendido algo novo!'
+        ),
+        React.createElement('button', {
+          className: 'button-modern gradient-secondary text-white px-6 py-3 rounded-lg',
+          onClick: onRestart
+        }, 'Tentar Novamente')
       ),
-      React.createElement('p', { className: 'text-lg text-gray-300 mb-8' }, message),
-      React.createElement('p', { className: 'text-base text-gray-400 mb-8' }, 
-        'Obrigado por participar. Esperamos que você tenha aprendido algo novo!'
-      ),
-      React.createElement('button', {
-        className: 'button-modern gradient-secondary text-white px-6 py-3 rounded-lg',
-        onClick: onRestart
-      }, 'Tentar Novamente'),
       React.createElement('button', {
         className: 'theme-toggle-btn',
         onClick: toggleTheme,

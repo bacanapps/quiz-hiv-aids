@@ -280,7 +280,7 @@ html,body{
 
 /* Buttons */
 .btn{
-  display: inline-block;
+  width: 100%;
   border-radius: var(--btn-radius);
   min-height: 2.5rem;
   border: 0;
@@ -290,9 +290,8 @@ html,body{
   cursor: pointer;
   color: #fff;
   text-align: center;
-  padding: 0.6rem 1rem;
+  padding: 0.75rem 1.5rem;
   text-decoration: none;
-  min-width: 7rem;
 }
 .btn-primary{
   background: linear-gradient(to right, #3b82f6, #6366f1);

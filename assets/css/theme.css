@@ -843,11 +843,15 @@ button.w-full.block.text-left.px-4.py-3.rounded-lg.border.transition-colors:focu
 /* Selected state enhancement */
 button.border-blue-500 {
   border-width: 2px;
-  background: rgba(59, 130, 246, 0.1);
+  background: rgba(59, 130, 246, 0.25);
+  color: #ffffff !important;
+  font-weight: 500;
 }
 
 :root[data-theme="light"] button.border-blue-500 {
-  background: rgba(59, 130, 246, 0.05);
+  background: rgba(59, 130, 246, 0.15);
+  color: #1e40af !important;
+  font-weight: 500;
 }
 
 /* Badges */

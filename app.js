@@ -52,10 +52,12 @@
     const playing = useAudioState(src);
     const btnClass = (className || 'btn-audio') + ' flex items-center gap-2';
     return React.createElement('button', {
+      type: 'button',
       className: btnClass,
+      'aria-pressed': playing ? 'true' : 'false',
       onClick: () => toggleAudio(src),
       'aria-label': ariaLabel || 'Audiodescrição'
-    }, React.createElement('span', { className: 'icon' }, playing ? '⏸️' : '🎵'), React.createElement('span', null, playing ? 'Pausar' : 'Audiodescrição'));
+    }, React.createElement('span', null, playing ? '⏸️ Pausar' : '▶️ Audiodescrição'));
   }
 
   function toggleAudio(src) {
@@ -188,7 +190,7 @@
             className: 'choice-card glass-card card-hover',
             onClick: () => onNavigate('presentation')
           },
-            React.createElement('div', { className: 'choice-icon' }, '🎯'),
+            React.createElement('div', { className: 'choice-icon' }, '📘'),
             React.createElement('h2', { className: 'choice-title' }, 'Apresentação'),
             React.createElement('p', { className: 'choice-desc' }, 'Conheça os objetivos do quiz e por que ele é importante na prevenção ao HIV e à aids'),
             React.createElement('div', { className: 'actions' },
@@ -243,7 +245,10 @@
             onBack();
           }
         }, '← Voltar'),
-        React.createElement('h1', { className: 'page-title' }, 'Quiz da Prevenção de HIV e Aids'),
+        React.createElement('div', { className: 'page-header-content' },
+          React.createElement('h1', { className: 'page-title' }, 'Apresentação'),
+          React.createElement('p', { className: 'page-subtle' }, 'Quiz Educativo HIV/AIDS')
+        ),
         React.createElement('button', {
           className: 'theme-toggle-btn',
           onClick: toggleTheme,
@@ -267,8 +272,10 @@
           React.createElement('div', { className: 'audio-row' },
             React.createElement('button', {
               className: 'audio-btn',
+              type: 'button',
+              'aria-pressed': isPlaying ? 'true' : 'false',
               onClick: () => toggleAudio(audioSrc)
-            }, `🎵 ${isPlaying ? 'Pausar' : 'Audiodescrição'}`)
+            }, isPlaying ? '⏸️ Pausar' : '▶️ Audiodescrição')
           )
       )
     );
@@ -351,11 +358,11 @@
           React.createElement('div', { className: 'text-gray-400 text-sm' }, `Pontuação: ${score}/${currentIndex + (answered ? 1 : 0)}`)
         ),
         React.createElement('div', { className: 'flex items-start justify-between gap-4 mb-6' },
-          React.createElement('h2', { className: 'text-2xl font-semibold flex-1' }, current.prompt),
+          React.createElement('h2', { className: 'text-2xl font-semibold flex-1 quiz-question-text' }, current.prompt),
           React.createElement(AudioButton, {
             src: `assets/audio/${current.id}.mp3`,
             ariaLabel: 'Ouvir a pergunta',
-            className: 'button-modern gradient-accent text-white px-4 py-2 rounded-lg whitespace-nowrap'
+            className: 'audio-btn'
           })
         ),
         React.createElement('div', { className: 'space-y-4' },

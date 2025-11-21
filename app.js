@@ -495,15 +495,36 @@
 
   function App() {
     const { presentation, questions } = useFetchData();
-    const [page, setPage] = React.useState('home');
+    const [page, setPage] = React.useState(() => {
+      // Initialize page based on hash
+      const hash = window.location.hash.replace('#', '').toLowerCase();
+      if (hash === 'apresentacao' || hash === 'apresentação') return 'presentation';
+      return 'home';
+    });
     const [finalScore, setFinalScore] = React.useState(0);
     const { theme, toggleTheme } = useTheme();
+
+    // Listen to hash changes
+    React.useEffect(() => {
+      function handleHashChange() {
+        const hash = window.location.hash.replace('#', '').toLowerCase();
+        if (hash === 'apresentacao' || hash === 'apresentação') {
+          setPage('presentation');
+        } else if (hash === '' || hash === 'home') {
+          setPage('home');
+        }
+      }
+
+      window.addEventListener('hashchange', handleHashChange);
+      return () => window.removeEventListener('hashchange', handleHashChange);
+    }, []);
 
     // Hidden reset for staff: 5 taps on top-left corner resets to home
     const [tapCount, setTapCount] = React.useState(0);
     React.useEffect(() => {
       if (tapCount >= 5) {
         setPage('home');
+        window.location.hash = '';
         setTapCount(0);
       }
     }, [tapCount]);
@@ -550,6 +571,12 @@
         notifyAudioStateChange();
       }
       setPage(newPage);
+      // Update hash based on page
+      if (newPage === 'presentation') {
+        window.location.hash = 'apresentacao';
+      } else if (newPage === 'home') {
+        window.location.hash = '';
+      }
     }
 
     let content = null;
@@ -568,6 +595,7 @@
             notifyAudioStateChange();
           }
           setPage('home');
+          window.location.hash = '';
         },
         theme, toggleTheme
       });

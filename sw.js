@@ -1,5 +1,5 @@
 // Cache name unique to this quiz PWA
-const CACHE_NAME = "quiz-modern-cache-v2";
+const CACHE_NAME = "quiz-modern-cache-v3";
 
 // List of files to precache for offline use.  Includes core app files, data files,
 // hero image, audio description, and remote libraries loaded via CDN.

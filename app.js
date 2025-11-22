@@ -437,6 +437,38 @@
       message = 'Continue aprendendo! Cada nova informação faz a diferença.';
     }
 
+    // Play celebratory sound for perfect score
+    React.useEffect(() => {
+      if (score === 5) {
+        // Stop any currently playing audio first
+        if (currentSound) {
+          currentSound.stop();
+          currentSound.unload();
+          currentSound = null;
+          currentAudioSrc = null;
+          notifyAudioStateChange();
+        }
+
+        // Create celebratory sound using Howler
+        const celebrationSound = new Howl({
+          src: ['https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3'],
+          volume: 0.5,
+          onloaderror: (id, error) => {
+            console.log('Celebration sound not available, using confetti only');
+          }
+        });
+        celebrationSound.play();
+
+        // Cleanup
+        return () => {
+          if (celebrationSound) {
+            celebrationSound.stop();
+            celebrationSound.unload();
+          }
+        };
+      }
+    }, [score]);
+
     // Confetti animation if perfect score
     const confetti = (typeof window !== 'undefined' && window.ReactConfetti && score === 5)
       ? React.createElement(window.ReactConfetti, {

@@ -1,5 +1,5 @@
 // Cache name unique to this quiz PWA
-const CACHE_NAME = "quiz-modern-cache-v3";
+const CACHE_NAME = "quiz-modern-cache-v4";
 
 // List of files to precache for offline use.  Includes core app files, data files,
 // hero image, audio description, and remote libraries loaded via CDN.
@@ -38,6 +38,8 @@ self.addEventListener('install', event => {
       return cache.addAll(PRECACHE_URLS);
     })
   );
+  // Skip waiting to activate immediately
+  self.skipWaiting();
 });
 
 // On activate, clear old caches
@@ -51,6 +53,8 @@ self.addEventListener('activate', event => {
       })
     ))
   );
+  // Take control of all clients immediately
+  return self.clients.claim();
 });
 
 // Fetch handler: serve precached assets, otherwise try network then cache

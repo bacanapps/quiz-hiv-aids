@@ -449,12 +449,18 @@
           notifyAudioStateChange();
         }
 
-        // Create celebratory sound using Howler
+        // Play celebration fanfare sound
         const celebrationSound = new Howl({
-          src: ['https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3'],
+          src: ['assets/audio/success-fanfare-trumpets-6185.mp3'],
           volume: 0.5,
+          onload: () => {
+            console.log('Celebration fanfare loaded successfully');
+          },
           onloaderror: (id, error) => {
-            console.log('Celebration sound not available, using confetti only');
+            console.log('Celebration sound file not found:', error);
+          },
+          onplayerror: (id, error) => {
+            console.log('Error playing celebration sound:', error);
           }
         });
         celebrationSound.play();

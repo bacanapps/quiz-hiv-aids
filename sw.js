@@ -1,5 +1,5 @@
 // Cache name unique to this quiz PWA
-const CACHE_NAME = "quiz-modern-cache-v4";
+const CACHE_NAME = "quiz-modern-cache-v5";
 
 // List of files to precache for offline use.  Includes core app files, data files,
 // hero image, audio description, and remote libraries loaded via CDN.
@@ -23,6 +23,7 @@ const PRECACHE_URLS = [
   "assets/audio/q9.mp3",
   "assets/audio/q10.mp3",
   "assets/audio/q11.mp3",
+  "assets/audio/success-fanfare-trumpets-6185.mp3",
   // External libraries
   "https://unpkg.com/react@17/umd/react.development.js",
   "https://unpkg.com/react-dom@17/umd/react-dom.development.js",

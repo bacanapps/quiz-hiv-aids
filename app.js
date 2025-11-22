@@ -330,8 +330,9 @@
     }
 
     function handleNext() {
-      // Stop any currently playing audio before moving to next question
-      if (currentSound && currentSound.playing()) {
+      // Stop any currently playing or paused audio before moving to next question
+      if (currentSound) {
+        console.log('Stopping audio before moving to next question');
         currentSound.stop();
         currentSound.unload();
         currentSound = null;

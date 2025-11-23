@@ -12,7 +12,6 @@
   console.log('React and ReactDOM verified');
 
   // ====== APP VERSION ======
-  const BUILD_VERSION = "v23.11.25 16:45"; // Update this when deploying
   const getAppVersion = () => {
     const loaded = new Date().toLocaleString('pt-BR', {
       day: '2-digit',
@@ -21,7 +20,7 @@
       hour: '2-digit',
       minute: '2-digit'
     });
-    return `${BUILD_VERSION} (Carregado: ${loaded})`;
+    return `(v. ${loaded})`;
   };
 
   // ====== Analytics Tracker ======

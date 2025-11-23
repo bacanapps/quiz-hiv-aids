@@ -1,6 +1,6 @@
 (() => {
   console.log('Modern Quiz PWA loading...');
-  
+
   // Global error handler for promises
   window.addEventListener('unhandledrejection', function(event) {
     console.error('Unhandled promise rejection:', event.reason);
@@ -10,6 +10,92 @@
   if (typeof React === 'undefined') throw new Error('React is not loaded');
   if (typeof ReactDOM === 'undefined') throw new Error('ReactDOM is not loaded');
   console.log('React and ReactDOM verified');
+
+  // ====== Analytics Tracker ======
+  // Utility class for tracking user interactions with Google Analytics
+  const AnalyticsTracker = {
+    // Track page navigation
+    trackPageView(pageName, pageTitle) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'page_view', {
+          page_title: pageTitle || pageName,
+          page_location: window.location.href,
+          page_path: window.location.pathname + window.location.hash,
+          page_name: pageName
+        });
+        console.log('Analytics: Page view tracked -', pageName);
+      }
+    },
+
+    // Track when a quiz question is viewed
+    trackQuestionView(questionId, questionNumber, questionText) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'view_question', {
+          question_id: questionId,
+          question_number: questionNumber,
+          question_text: questionText,
+          event_category: 'Quiz',
+          event_label: `Question ${questionNumber}: ${questionId}`
+        });
+        console.log('Analytics: Question view tracked -', questionId);
+      }
+    },
+
+    // Track when a user selects an answer option
+    trackAnswerSelection(questionId, questionNumber, selectedOption, isCorrect) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'select_answer', {
+          question_id: questionId,
+          question_number: questionNumber,
+          selected_option: selectedOption,
+          is_correct: isCorrect,
+          event_category: 'Quiz',
+          event_label: `Q${questionNumber} - Option ${selectedOption} (${isCorrect ? 'Correct' : 'Incorrect'})`
+        });
+        console.log('Analytics: Answer selection tracked -', questionId, 'Option:', selectedOption, 'Correct:', isCorrect);
+      }
+    },
+
+    // Track quiz completion with results
+    trackQuizCompletion(score, totalQuestions, percentage) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'complete_quiz', {
+          score: score,
+          total_questions: totalQuestions,
+          percentage: percentage,
+          event_category: 'Quiz',
+          event_label: `Score: ${score}/${totalQuestions} (${percentage}%)`,
+          value: score
+        });
+        console.log('Analytics: Quiz completion tracked -', score, '/', totalQuestions);
+      }
+    },
+
+    // Track audio playback
+    trackAudioPlay(audioType, contentId) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'play_audio', {
+          audio_type: audioType,
+          content_id: contentId,
+          event_category: 'Audio',
+          event_label: `${audioType}: ${contentId}`
+        });
+        console.log('Analytics: Audio play tracked -', audioType, contentId);
+      }
+    },
+
+    // Track theme toggle
+    trackThemeToggle(newTheme) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'toggle_theme', {
+          theme: newTheme,
+          event_category: 'Settings',
+          event_label: `Theme changed to ${newTheme}`
+        });
+        console.log('Analytics: Theme toggle tracked -', newTheme);
+      }
+    }
+  };
 
   // Manage a single Howler instance for audio playback and track play state
   let currentSound = null;
@@ -91,6 +177,19 @@
 
     // Create and play new audio
     console.log('Creating new Howl instance for:', src);
+
+    // Determine audio type and content ID from the src
+    let audioType = 'unknown';
+    let contentId = src;
+    if (src.includes('presentation')) {
+      audioType = 'presentation';
+      contentId = 'presentation';
+    } else if (src.match(/q\d+\.mp3/)) {
+      audioType = 'question';
+      const match = src.match(/q(\d+)\.mp3/);
+      contentId = match ? `q${match[1]}` : src;
+    }
+
     currentSound = new Howl({
       src: [src],
       onload: () => {
@@ -101,6 +200,8 @@
       },
       onplay: () => {
         console.log('Audio started playing');
+        // Track audio play
+        AnalyticsTracker.trackAudioPlay(audioType, contentId);
         notifyAudioStateChange();
       },
       onend: () => {
@@ -308,6 +409,18 @@
     const [answered, setAnswered] = React.useState(false);
     const [score, setScore] = React.useState(0);
 
+    // Track question view when question changes
+    React.useEffect(() => {
+      if (selected.length > 0 && selected[currentIndex]) {
+        const current = selected[currentIndex];
+        AnalyticsTracker.trackQuestionView(
+          current.id,
+          currentIndex + 1,
+          current.prompt
+        );
+      }
+    }, [currentIndex, selected]);
+
     if (!questions || questions.length === 0) {
       return React.createElement('div', { className: 'min-h-screen flex items-center justify-center' },
         React.createElement('p', null, 'Carregando...')
@@ -324,7 +437,17 @@
     function handleConfirm() {
       if (answered) return;
       setAnswered(true);
-      if (selectedOption === current.correctIndex) {
+      const isCorrect = selectedOption === current.correctIndex;
+
+      // Track answer selection
+      AnalyticsTracker.trackAnswerSelection(
+        current.id,
+        currentIndex + 1,
+        current.choices[selectedOption],
+        isCorrect
+      );
+
+      if (isCorrect) {
         setScore(score + 1);
       }
     }
@@ -537,6 +660,10 @@
         const url = new URL(window.location);
         url.searchParams.set('theme', next);
         window.history.pushState({}, '', url);
+
+        // Track theme toggle
+        AnalyticsTracker.trackThemeToggle(next);
+
         return next;
       });
     }, []);
@@ -598,6 +725,12 @@
         currentAudioSrc = null;
         notifyAudioStateChange();
       }
+
+      // Track quiz completion
+      const totalQuestions = 5;
+      const percentage = (score / totalQuestions) * 100;
+      AnalyticsTracker.trackQuizCompletion(score, totalQuestions, percentage);
+
       setFinalScore(score);
       setPage('result');
     }
@@ -626,6 +759,18 @@
         notifyAudioStateChange();
       }
       setPage(newPage);
+
+      // Track page navigation
+      const pageNames = {
+        'home': 'Home',
+        'presentation': 'Apresentação',
+        'quiz': 'Quiz',
+        'result': 'Resultado'
+      };
+      if (pageNames[newPage]) {
+        AnalyticsTracker.trackPageView(newPage, pageNames[newPage]);
+      }
+
       // Update hash based on page
       if (newPage === 'presentation') {
         window.location.hash = 'apresentacao';

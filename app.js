@@ -11,6 +11,19 @@
   if (typeof ReactDOM === 'undefined') throw new Error('ReactDOM is not loaded');
   console.log('React and ReactDOM verified');
 
+  // ====== APP VERSION ======
+  const BUILD_VERSION = "v23.11.25 16:45"; // Update this when deploying
+  const getAppVersion = () => {
+    const loaded = new Date().toLocaleString('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+    return `${BUILD_VERSION} (Carregado: ${loaded})`;
+  };
+
   // ====== Analytics Tracker ======
   // Utility class for tracking user interactions with Google Analytics
   const AnalyticsTracker = {
@@ -315,7 +328,7 @@
       ),
 
       React.createElement('div', { className: 'app-footer-line' },
-        '© 2025 Dezembro Vermelho • Ministério da Saúde • v23.11.25 16:45'
+        `© 2025 Dezembro Vermelho • Ministério da Saúde • ${getAppVersion()}`
       )
     );
   }
@@ -385,7 +398,7 @@
       ),
 
       React.createElement('div', { className: 'app-footer-line' },
-        '© 2025 Dezembro Vermelho • Ministério da Saúde • v23.11.25 16:45'
+        `© 2025 Dezembro Vermelho • Ministério da Saúde • ${getAppVersion()}`
       )
     );
   }
@@ -541,7 +554,7 @@
       }, theme === 'light' ? '🌙' : '☀️'),
 
       React.createElement('div', { className: 'app-footer-line' },
-        '© 2025 Dezembro Vermelho • Ministério da Saúde • v23.11.25 16:45'
+        `© 2025 Dezembro Vermelho • Ministério da Saúde • ${getAppVersion()}`
       )
     );
   }
@@ -632,7 +645,7 @@
       }, theme === 'light' ? '🌙' : '☀️'),
 
       React.createElement('div', { className: 'app-footer-line' },
-        '© 2025 Dezembro Vermelho • Ministério da Saúde • v23.11.25 16:45'
+        `© 2025 Dezembro Vermelho • Ministério da Saúde • ${getAppVersion()}`
       )
     );
   }

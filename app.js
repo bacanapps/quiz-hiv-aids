@@ -13,7 +13,7 @@
 
   // ====== APP VERSION ======
   // Update this manually when deploying to reflect last GitHub update
-  const APP_VERSION = '24/11/2025, 07:40';
+  const APP_VERSION = '24/11/2025, 13:30';
   const getAppVersion = () => {
     return `(v. ${APP_VERSION})`;
   };
@@ -300,7 +300,7 @@
           },
             React.createElement('div', { className: 'choice-icon' }, '📘'),
             React.createElement('h2', { className: 'choice-title' }, 'Apresentação'),
-            React.createElement('p', { className: 'choice-desc' }, 'Conheça os objetivos do quiz e por que ele é importante na prevenção ao HIV e à aids'),
+            React.createElement('p', { className: 'choice-desc' }, ''),
             React.createElement('div', { className: 'actions' },
               React.createElement('button', { className: 'btn btn-primary' }, 'Explorar')
             )
@@ -313,7 +313,7 @@
           },
             React.createElement('div', { className: 'choice-icon' }, '📊'),
             React.createElement('h2', { className: 'choice-title' }, 'Quiz'),
-            React.createElement('p', { className: 'choice-desc' }, 'Perguntas essenciais sobre HIV/AIDS'),
+            React.createElement('p', { className: 'choice-desc' }, ''),
             React.createElement('div', { className: 'actions' },
               React.createElement('button', { className: 'btn btn-green' }, 'Explorar')
             )

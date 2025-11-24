@@ -284,8 +284,8 @@
       React.createElement('section', { className: 'hero hero-gradient glass-card' },
         React.createElement('div', { className: 'hero-header' },
           React.createElement('div', { className: 'hero-content' },
-            React.createElement('h1', { className: 'hero-title' }, 'Quiz Educativo HIV/AIDS'),
-            React.createElement('p', { className: 'hero-lede' }, 'Teste seus conhecimentos sobre prevenção e tratamento')
+            React.createElement('h1', { className: 'hero-title' }, 'QUIZ'),
+            React.createElement('p', { className: 'hero-lede' }, 'Teste seus conhecimentos no contexto de HIV e aids.')
           )
         )
       ),

@@ -13,7 +13,7 @@
 
   // ====== APP VERSION ======
   // Update this manually when deploying to reflect last GitHub update
-  const APP_VERSION = '24/11/2025, 13:30';
+  const APP_VERSION = '10/12/2025, 20:20';
   const getAppVersion = () => {
     return `(v. ${APP_VERSION})`;
   };
@@ -100,6 +100,18 @@
           event_label: `Theme changed to ${newTheme}`
         });
         console.log('Analytics: Theme toggle tracked -', newTheme);
+      }
+    },
+
+    // Track language toggle
+    trackLanguageToggle(newLanguage) {
+      if (typeof gtag === 'function') {
+        gtag('event', 'language_toggle', {
+          language: newLanguage,
+          event_category: 'Settings',
+          event_label: `Language changed to ${newLanguage}`
+        });
+        console.log('Analytics: Language toggle tracked -', newLanguage);
       }
     }
   };
@@ -232,6 +244,144 @@
     currentSound.play();
   }
 
+  /* --------------- Translations --------------- */
+  const TRANSLATIONS = {
+    'pt-br': {
+      nav: {
+        home: 'Home',
+        apresentacao: 'Apresentação',
+        quiz: 'Quiz',
+        voltar: 'Voltar'
+      },
+      home: {
+        heroTitle: 'QUIZ',
+        heroDesc: 'Teste seus conhecimentos no contexto de HIV e aids.',
+        cardApresentacao: {
+          title: 'Apresentação',
+          button: 'Explorar'
+        },
+        cardQuiz: {
+          title: 'Quiz',
+          button: 'Explorar'
+        }
+      },
+      apresentacao: {
+        title: 'Apresentação',
+        subtitle: 'Quiz Educativo HIV/AIDS',
+        loading: 'Carregando…',
+        audioBtnPlay: '▶️ Audiodescrição',
+        audioBtnPause: '⏸️ Pausar'
+      },
+      quiz: {
+        questionLabel: 'Pergunta',
+        scoreLabel: 'Pontuação',
+        confirmBtn: 'Confirmar',
+        nextBtn: 'Próxima',
+        finishBtn: 'Finalizar',
+        loading: 'Carregando…',
+        listenQuestion: 'Ouvir a pergunta'
+      },
+      result: {
+        title: 'Você concluiu o quiz!',
+        scoreLabel: 'Pontuação',
+        message100: 'Excelente! Você acertou todas as questões!',
+        message80: 'Muito bom! Você tem um ótimo conhecimento sobre o tema!',
+        message60: 'Bom trabalho! Você está no caminho certo!',
+        messageDefault: 'Continue aprendendo! Cada nova informação faz a diferença.',
+        thanks: 'Obrigado por participar. Esperamos que você tenha aprendido algo novo!',
+        restartBtn: 'Tentar Novamente'
+      },
+      common: {
+        themeToggleAria: 'Alternar tema visual',
+        languageToggleAria: 'Alternar idioma',
+        languageLabel: 'Português',
+        footer: '© 2025 Dezembro Vermelho • Ministério da Saúde'
+      }
+    },
+    'en': {
+      nav: {
+        home: 'Home',
+        apresentacao: 'Introduction',
+        quiz: 'Quiz',
+        voltar: 'Back'
+      },
+      home: {
+        heroTitle: 'QUIZ',
+        heroDesc: 'Test your knowledge about HIV and AIDS.',
+        cardApresentacao: {
+          title: 'Introduction',
+          button: 'Explore'
+        },
+        cardQuiz: {
+          title: 'Quiz',
+          button: 'Explore'
+        }
+      },
+      apresentacao: {
+        title: 'Introduction',
+        subtitle: 'HIV/AIDS Educational Quiz',
+        loading: 'Loading…',
+        audioBtnPlay: '▶️ Audio Description',
+        audioBtnPause: '⏸️ Pause'
+      },
+      quiz: {
+        questionLabel: 'Question',
+        scoreLabel: 'Score',
+        confirmBtn: 'Confirm',
+        nextBtn: 'Next',
+        finishBtn: 'Finish',
+        loading: 'Loading…',
+        listenQuestion: 'Listen to question'
+      },
+      result: {
+        title: 'You completed the quiz!',
+        scoreLabel: 'Score',
+        message100: 'Excellent! You got all the questions right!',
+        message80: 'Very good! You have great knowledge about the subject!',
+        message60: 'Good job! You are on the right track!',
+        messageDefault: 'Keep learning! Every new piece of information makes a difference.',
+        thanks: 'Thank you for participating. We hope you learned something new!',
+        restartBtn: 'Try Again'
+      },
+      common: {
+        themeToggleAria: 'Toggle visual theme',
+        languageToggleAria: 'Toggle language',
+        languageLabel: 'English',
+        footer: '© 2025 Red December • Ministry of Health'
+      }
+    }
+  };
+
+  /**
+   * Translation helper function
+   * @param {string} language - The current language ('en' or 'pt-br')
+   * @param {string} key - The translation key path (e.g., 'home.heroTitle')
+   * @returns {string} The translated string
+   */
+  function t(language, key) {
+    const keys = key.split('.');
+    let value = TRANSLATIONS[language];
+
+    for (const k of keys) {
+      if (value && typeof value === 'object') {
+        value = value[k];
+      } else {
+        // Fallback to Portuguese if key not found
+        value = TRANSLATIONS['pt-br'];
+        for (const k2 of keys) {
+          if (value && typeof value === 'object') {
+            value = value[k2];
+          } else {
+            return key; // Return key if not found
+          }
+        }
+        break;
+      }
+    }
+
+    return value || key;
+  }
+
   // Hook to fetch presentation and questions data
   function useFetchData() {
     const [presentation, setPresentation] = React.useState(null);
@@ -271,21 +421,29 @@
   }
 
   // Home component with hero and navigation cards
-  function Home({ onNavigate, theme, toggleTheme }) {
+  function Home({ onNavigate, theme, toggleTheme, language, toggleLanguage }) {
     return React.createElement('div', { className: 'page fade-in' },
       // Theme toggle button (fixed position)
       React.createElement('button', {
         className: 'theme-toggle-btn',
         onClick: toggleTheme,
-        'aria-label': 'Alternar tema'
+        'aria-label': t(language, 'common.themeToggleAria')
       }, theme === 'light' ? '🌙' : '☀️'),
+
+      // Language toggle button (fixed position)
+      React.createElement('button', {
+        className: 'language-toggle-btn',
+        onClick: toggleLanguage,
+        'aria-label': t(language, 'common.languageToggleAria'),
+        style: { position: 'fixed', top: '1.5rem', right: '80px', width: '48px', height: '48px', borderRadius: '50%', background: theme === 'dark' ? 'rgba(30, 41, 59, 0.6)' : 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: theme === 'dark' ? '1px solid rgba(148, 163, 184, 0.2)' : '1px solid rgba(0, 0, 0, 0.08)', color: theme === 'dark' ? '#e2e8f0' : '#1a1a1a', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', zIndex: 1000, fontWeight: '600' }
+      }, language === 'en' ? '🇧🇷' : '🇬🇧'),
 
       // Hero section with gradient glass card
       React.createElement('section', { className: 'hero hero-gradient glass-card' },
         React.createElement('div', { className: 'hero-header' },
           React.createElement('div', { className: 'hero-content' },
-            React.createElement('h1', { className: 'hero-title' }, 'QUIZ'),
-            React.createElement('p', { className: 'hero-lede' }, 'Teste seus conhecimentos no contexto de HIV e aids.')
+            React.createElement('h1', { className: 'hero-title' }, t(language, 'home.heroTitle')),
+            React.createElement('p', { className: 'hero-lede' }, t(language, 'home.heroDesc'))
           )
         )
       ),
@@ -299,10 +457,10 @@
             onClick: () => onNavigate('presentation')
           },
             React.createElement('div', { className: 'choice-icon' }, '📘'),
-            React.createElement('h2', { className: 'choice-title' }, 'Apresentação'),
+            React.createElement('h2', { className: 'choice-title' }, t(language, 'home.cardApresentacao.title')),
             React.createElement('p', { className: 'choice-desc' }, ''),
             React.createElement('div', { className: 'actions' },
-              React.createElement('button', { className: 'btn btn-primary' }, 'Explorar')
+              React.createElement('button', { className: 'btn btn-primary' }, t(language, 'home.cardApresentacao.button'))
             )
           ),
 
@@ -312,31 +470,40 @@
             onClick: () => onNavigate('quiz')
           },
             React.createElement('div', { className: 'choice-icon' }, '📊'),
-            React.createElement('h2', { className: 'choice-title' }, 'Quiz'),
+            React.createElement('h2', { className: 'choice-title' }, t(language, 'home.cardQuiz.title')),
             React.createElement('p', { className: 'choice-desc' }, ''),
             React.createElement('div', { className: 'actions' },
-              React.createElement('button', { className: 'btn btn-green' }, 'Explorar')
+              React.createElement('button', { className: 'btn btn-green' }, t(language, 'home.cardQuiz.button'))
             )
           )
         )
       ),
 
       React.createElement('div', { className: 'app-footer-line' },
-        `© 2025 Dezembro Vermelho • Ministério da Saúde • ${getAppVersion()}`
+        React.createElement('span', null, `${t(language, 'common.footer')} • ${getAppVersion()}`),
+        React.createElement('button', {
+          className: 'footer-lang-toggle',
+          onClick: toggleLanguage,
+          'aria-label': t(language, 'common.languageToggleAria'),
+          style: { marginLeft: '12px', fontSize: '0.875rem', cursor: 'pointer', background: 'none', border: 'none', color: 'inherit' }
+        }, language === 'en' ? '🇧🇷 PT' : '🇬🇧 EN')
       )
     );
   }
 
   // Presentation page component
-  function PresentationPage({ presentation, onBack, theme, toggleTheme }) {
+  function PresentationPage({ presentation, onBack, theme, toggleTheme, language, toggleLanguage }) {
     if (!presentation) {
       return React.createElement('div', { className: 'page fade-in' },
-        React.createElement('p', null, 'Carregando...')
+        React.createElement('p', null, t(language, 'apresentacao.loading'))
       );
     }
 
     const audioSrc = presentation.audioDescription && presentation.audioDescription.src;
     const isPlaying = useAudioState(audioSrc);
+
+    // Hide audio button when English selected (audio only available in Portuguese)
+    const showAudioButton = language === 'pt-br';
 
     return React.createElement('div', { className: 'page fade-in' },
       // Header
@@ -356,16 +523,22 @@
             }
             onBack();
           }
-        }, '← Voltar'),
+        }, `← ${t(language, 'nav.voltar')}`),
         React.createElement('div', { className: 'page-header-content' },
-          React.createElement('h1', { className: 'page-title' }, 'Apresentação'),
-          React.createElement('p', { className: 'page-subtle' }, 'Quiz Educativo HIV/AIDS')
+          React.createElement('h1', { className: 'page-title' }, t(language, 'apresentacao.title')),
+          React.createElement('p', { className: 'page-subtle' }, t(language, 'apresentacao.subtitle'))
         ),
         React.createElement('button', {
           className: 'theme-toggle-btn',
           onClick: toggleTheme,
-          'aria-label': 'Alternar tema'
-        }, theme === 'light' ? '🌙' : '☀️')
+          'aria-label': t(language, 'common.themeToggleAria')
+        }, theme === 'light' ? '🌙' : '☀️'),
+        React.createElement('button', {
+          className: 'language-toggle-btn',
+          onClick: toggleLanguage,
+          'aria-label': t(language, 'common.languageToggleAria'),
+          style: { position: 'absolute', top: '8px', right: '60px', width: '36px', height: '36px', borderRadius: '50%', background: theme === 'dark' ? 'rgba(30, 41, 59, 0.6)' : 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: theme === 'dark' ? '1px solid rgba(148, 163, 184, 0.2)' : '1px solid rgba(0, 0, 0, 0.08)', color: theme === 'dark' ? '#e2e8f0' : '#1a1a1a', fontSize: '0.65rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', zIndex: 100, fontWeight: '600' }
+        }, language === 'en' ? '🇧🇷' : '🇬🇧')
       ),
 
       // Presentation card
@@ -373,32 +546,38 @@
         React.createElement('div', { className: 'presentation-heroimg-wrapper' },
           React.createElement('img', {
             src: presentation.heroImage,
-            alt: 'Quiz Prevenção HIV e Aids'
+            alt: t(language, 'apresentacao.subtitle')
           })
         ),
         React.createElement('div', {
           className: 'presentation-textblock',
           dangerouslySetInnerHTML: { __html: presentation.introHtml }
         }),
-        audioSrc &&
+        showAudioButton && audioSrc &&
           React.createElement('div', { className: 'audio-row' },
             React.createElement('button', {
               className: 'audio-btn',
               type: 'button',
               'aria-pressed': isPlaying ? 'true' : 'false',
               onClick: () => toggleAudio(audioSrc)
-            }, isPlaying ? '⏸️ Pausar' : '▶️ Audiodescrição')
+            }, isPlaying ? t(language, 'apresentacao.audioBtnPause') : t(language, 'apresentacao.audioBtnPlay'))
           )
       ),
 
       React.createElement('div', { className: 'app-footer-line' },
-        `© 2025 Dezembro Vermelho • Ministério da Saúde • ${getAppVersion()}`
+        React.createElement('span', null, `${t(language, 'common.footer')} • ${getAppVersion()}`),
+        React.createElement('button', {
+          className: 'footer-lang-toggle',
+          onClick: toggleLanguage,
+          'aria-label': t(language, 'common.languageToggleAria'),
+          style: { marginLeft: '12px', fontSize: '0.875rem', cursor: 'pointer', background: 'none', border: 'none', color: 'inherit' }
+        }, language === 'en' ? '🇧🇷 PT' : '🇬🇧 EN')
       )
     );
   }
 
   // Quiz page component
-  function QuizPage({ questions, onComplete, theme, toggleTheme }) {
+  function QuizPage({ questions, onComplete, theme, toggleTheme, language, toggleLanguage }) {
     // Select 5 random questions once when component mounts
     const selected = React.useMemo(() => {
       if (!questions || questions.length === 0) return [];
@@ -430,7 +609,7 @@
 
     if (!questions || questions.length === 0) {
       return React.createElement('div', { className: 'min-h-screen flex items-center justify-center' },
-        React.createElement('p', null, 'Carregando...')
+        React.createElement('p', null, t(language, 'quiz.loading'))
       );
     }
 
@@ -490,17 +669,20 @@
       toggleAudio(audioSrc);
     }
 
+    // Hide audio button when English selected (audio only available in Portuguese)
+    const showAudioButton = language === 'pt-br';
+
     return React.createElement('div', { className: 'min-h-screen fade-in flex flex-col items-center justify-start p-6 md:p-10' },
       React.createElement('div', { className: 'w-full max-w-3xl glass-effect rounded-xl p-6 md:p-8' },
         React.createElement('div', { className: 'mb-4 flex justify-between items-center' },
-          React.createElement('div', { className: 'text-gray-400 text-sm' }, `Pergunta ${currentIndex + 1}/5`),
-          React.createElement('div', { className: 'text-gray-400 text-sm' }, `Pontuação: ${score}/${currentIndex + (answered ? 1 : 0)}`)
+          React.createElement('div', { className: 'text-gray-400 text-sm' }, `${t(language, 'quiz.questionLabel')} ${currentIndex + 1}/5`),
+          React.createElement('div', { className: 'text-gray-400 text-sm' }, `${t(language, 'quiz.scoreLabel')}: ${score}/${currentIndex + (answered ? 1 : 0)}`)
         ),
         React.createElement('div', { className: 'flex items-start justify-between gap-4 mb-6' },
           React.createElement('h2', { className: 'text-2xl font-semibold flex-1 quiz-question-text' }, current.prompt),
-          React.createElement(AudioButton, {
+          showAudioButton && React.createElement(AudioButton, {
             src: `assets/audio/${current.id}.mp3`,
-            ariaLabel: 'Ouvir a pergunta',
+            ariaLabel: t(language, 'quiz.listenQuestion'),
             className: 'audio-btn'
           })
         ),
@@ -534,37 +716,50 @@
           !answered && selectedOption !== null && React.createElement('button', {
             className: 'button-modern gradient-primary text-white px-4 py-2 rounded-lg',
             onClick: handleConfirm
-          }, 'Confirmar'),
+          }, t(language, 'quiz.confirmBtn')),
           answered && React.createElement('button', {
             className: 'button-modern gradient-accent text-white px-4 py-2 rounded-lg',
             onClick: handleNext
-          }, currentIndex < selected.length - 1 ? 'Próxima' : 'Finalizar')
+          }, currentIndex < selected.length - 1 ? t(language, 'quiz.nextBtn') : t(language, 'quiz.finishBtn'))
         )
       ),
       React.createElement('button', {
         className: 'theme-toggle-btn',
         onClick: toggleTheme,
-        'aria-label': 'Alternar tema'
+        'aria-label': t(language, 'common.themeToggleAria')
       }, theme === 'light' ? '🌙' : '☀️'),
 
+      React.createElement('button', {
+        className: 'language-toggle-btn',
+        onClick: toggleLanguage,
+        'aria-label': t(language, 'common.languageToggleAria'),
+        style: { position: 'fixed', top: '1.5rem', right: '80px', width: '48px', height: '48px', borderRadius: '50%', background: theme === 'dark' ? 'rgba(30, 41, 59, 0.6)' : 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: theme === 'dark' ? '1px solid rgba(148, 163, 184, 0.2)' : '1px solid rgba(0, 0, 0, 0.08)', color: theme === 'dark' ? '#e2e8f0' : '#1a1a1a', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', zIndex: 1000, fontWeight: '600' }
+      }, language === 'en' ? '🇧🇷' : '🇬🇧'),
+
       React.createElement('div', { className: 'app-footer-line' },
-        `© 2025 Dezembro Vermelho • Ministério da Saúde • ${getAppVersion()}`
+        React.createElement('span', null, `${t(language, 'common.footer')} • ${getAppVersion()}`),
+        React.createElement('button', {
+          className: 'footer-lang-toggle',
+          onClick: toggleLanguage,
+          'aria-label': t(language, 'common.languageToggleAria'),
+          style: { marginLeft: '12px', fontSize: '0.875rem', cursor: 'pointer', background: 'none', border: 'none', color: 'inherit' }
+        }, language === 'en' ? '🇧🇷 PT' : '🇬🇧 EN')
       )
     );
   }
 
   // Result page component
-  function ResultPage({ score, onRestart, theme, toggleTheme }) {
+  function ResultPage({ score, onRestart, theme, toggleTheme, language, toggleLanguage }) {
     const percentage = (score / 5) * 100;
     let message;
     if (percentage === 100) {
-      message = 'Excelente! Você acertou todas as questões!';
+      message = t(language, 'result.message100');
     } else if (percentage >= 80) {
-      message = 'Muito bom! Você tem um ótimo conhecimento sobre o tema!';
+      message = t(language, 'result.message80');
     } else if (percentage >= 60) {
-      message = 'Bom trabalho! Você está no caminho certo!';
+      message = t(language, 'result.message60');
     } else {
-      message = 'Continue aprendendo! Cada nova informação faz a diferença.';
+      message = t(language, 'result.messageDefault');
     }
 
     // Play celebratory sound for perfect score
@@ -619,27 +814,40 @@
     return React.createElement('div', { className: 'min-h-screen fade-in flex flex-col items-center justify-center px-6', style: { position: 'relative' } },
       confetti,
       React.createElement('div', { className: 'presentation-card text-center' },
-        React.createElement('h2', { className: 'text-3xl md:text-4xl font-bold mb-4 quiz-result-title' }, 'Você concluiu o quiz!'),
+        React.createElement('h2', { className: 'text-3xl md:text-4xl font-bold mb-4 quiz-result-title' }, t(language, 'result.title')),
         React.createElement('div', { className: 'text-2xl font-bold mb-4 text-green-500' },
-          `Pontuação: ${score}/5 (${percentage}%)`
+          `${t(language, 'result.scoreLabel')}: ${score}/5 (${percentage}%)`
         ),
         React.createElement('p', { className: 'text-lg mb-8 quiz-result-message' }, message),
         React.createElement('p', { className: 'text-base mb-8 quiz-result-thanks' },
-          'Obrigado por participar. Esperamos que você tenha aprendido algo novo!'
+          t(language, 'result.thanks')
         ),
         React.createElement('button', {
           className: 'button-modern gradient-secondary text-white px-6 py-3 rounded-lg',
           onClick: onRestart
-        }, 'Tentar Novamente')
+        }, t(language, 'result.restartBtn'))
       ),
       React.createElement('button', {
         className: 'theme-toggle-btn',
         onClick: toggleTheme,
-        'aria-label': 'Alternar tema'
+        'aria-label': t(language, 'common.themeToggleAria')
       }, theme === 'light' ? '🌙' : '☀️'),
 
+      React.createElement('button', {
+        className: 'language-toggle-btn',
+        onClick: toggleLanguage,
+        'aria-label': t(language, 'common.languageToggleAria'),
+        style: { position: 'fixed', top: '1.5rem', right: '80px', width: '48px', height: '48px', borderRadius: '50%', background: theme === 'dark' ? 'rgba(30, 41, 59, 0.6)' : 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: theme === 'dark' ? '1px solid rgba(148, 163, 184, 0.2)' : '1px solid rgba(0, 0, 0, 0.08)', color: theme === 'dark' ? '#e2e8f0' : '#1a1a1a', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', zIndex: 1000, fontWeight: '600' }
+      }, language === 'en' ? '🇧🇷' : '🇬🇧'),
+
       React.createElement('div', { className: 'app-footer-line' },
-        `© 2025 Dezembro Vermelho • Ministério da Saúde • ${getAppVersion()}`
+        React.createElement('span', null, `${t(language, 'common.footer')} • ${getAppVersion()}`),
+        React.createElement('button', {
+          className: 'footer-lang-toggle',
+          onClick: toggleLanguage,
+          'aria-label': t(language, 'common.languageToggleAria'),
+          style: { marginLeft: '12px', fontSize: '0.875rem', cursor: 'pointer', background: 'none', border: 'none', color: 'inherit' }
+        }, language === 'en' ? '🇧🇷 PT' : '🇬🇧 EN')
       )
     );
   }
@@ -682,6 +890,58 @@
     return { theme, toggleTheme };
   }
 
+  /* --------------- Language Management --------------- */
+  function useLanguage() {
+    const [language, setLanguage] = React.useState(() => {
+      // 1. Check URL parameter first (?lang=en)
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      if (langParam === 'en' || langParam === 'pt-br' || langParam === 'pt') {
+        return langParam === 'en' ? 'en' : 'pt-br';
+      }
+
+      // 2. Check localStorage
+      const saved = localStorage.getItem('quiz-hiv-aids-language');
+      if (saved === 'en' || saved === 'pt-br') {
+        return saved;
+      }
+
+      // 3. Browser language detection (default)
+      const browserLang = navigator.language || navigator.userLanguage;
+      if (browserLang && browserLang.toLowerCase().startsWith('en')) {
+        return 'en';
+      }
+
+      // 4. Default to Portuguese
+      return 'pt-br';
+    });
+
+    const toggleLanguage = React.useCallback(() => {
+      setLanguage(current => {
+        const next = current === 'en' ? 'pt-br' : 'en';
+        localStorage.setItem('quiz-hiv-aids-language', next);
+        document.documentElement.setAttribute('lang', next);
+
+        // Update URL parameter
+        const url = new URL(window.location);
+        url.searchParams.set('lang', next);
+        window.history.pushState({}, '', url);
+
+        // Track language change
+        AnalyticsTracker.trackLanguageToggle(next);
+
+        return next;
+      });
+    }, []);
+
+    // Apply language on mount
+    React.useEffect(() => {
+      document.documentElement.setAttribute('lang', language);
+    }, [language]);
+
+    return { language, toggleLanguage };
+  }
+
   function App() {
     const { presentation, questions } = useFetchData();
     const [page, setPage] = React.useState(() => {
@@ -692,6 +952,7 @@
     });
     const [finalScore, setFinalScore] = React.useState(0);
     const { theme, toggleTheme } = useTheme();
+    const { language, toggleLanguage } = useLanguage();
 
     // Listen to hash changes
     React.useEffect(() => {
@@ -788,7 +1049,7 @@
 
     let content = null;
     if (page === 'home') {
-      content = React.createElement(Home, { onNavigate: handleNavigate, theme, toggleTheme });
+      content = React.createElement(Home, { onNavigate: handleNavigate, theme, toggleTheme, language, toggleLanguage });
     } else if (page === 'presentation') {
       content = React.createElement(PresentationPage, {
         presentation,
@@ -804,19 +1065,19 @@
           setPage('home');
           window.location.hash = '';
         },
-        theme, toggleTheme
+        theme, toggleTheme, language, toggleLanguage
       });
     } else if (page === 'quiz') {
       content = React.createElement(QuizPage, {
         questions,
         onComplete: handleQuizComplete,
-        theme, toggleTheme
+        theme, toggleTheme, language, toggleLanguage
       });
     } else if (page === 'result') {
       content = React.createElement(ResultPage, {
         score: finalScore,
         onRestart: handleRestart,
-        theme, toggleTheme
+        theme, toggleTheme, language, toggleLanguage
       });
     } else {
       content = React.createElement('div', null, 'Página não encontrada');

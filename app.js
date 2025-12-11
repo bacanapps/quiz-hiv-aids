@@ -930,7 +930,25 @@
       });
     }, []);
 
-    // Apply language on mount
+    // Listen for URL changes (browser back/forward)
+    React.useEffect(() => {
+      const handlePopState = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const langParam = urlParams.get('lang');
+        if (langParam === 'en' || langParam === 'pt-br' || langParam === 'pt') {
+          const newLang = langParam === 'en' ? 'en' : 'pt-br';
+          if (newLang !== language) {
+            setLanguage(newLang);
+            localStorage.setItem('quiz-hiv-aids-language', newLang);
+          }
+        }
+      };
+
+      window.addEventListener('popstate', handlePopState);
+      return () => window.removeEventListener('popstate', handlePopState);
+    }, [language]);
+
+    // Apply language on mount and changes
     React.useEffect(() => {
       document.documentElement.setAttribute('lang', language);
     }, [language]);

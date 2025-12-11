@@ -13,7 +13,7 @@
 
   // ====== APP VERSION ======
   // Update this manually when deploying to reflect last GitHub update
-  const APP_VERSION = '10/12/2025, 20:20';
+  const APP_VERSION = '11/12/2025, 10:00';
   const getAppVersion = () => {
     return `(v. ${APP_VERSION})`;
   };
@@ -434,9 +434,8 @@
       React.createElement('button', {
         className: 'language-toggle-btn',
         onClick: toggleLanguage,
-        'aria-label': t(language, 'common.languageToggleAria'),
-        style: { position: 'fixed', top: '1.5rem', right: '80px', width: '48px', height: '48px', borderRadius: '50%', background: theme === 'dark' ? 'rgba(30, 41, 59, 0.6)' : 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: theme === 'dark' ? '1px solid rgba(148, 163, 184, 0.2)' : '1px solid rgba(0, 0, 0, 0.08)', color: theme === 'dark' ? '#e2e8f0' : '#1a1a1a', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', zIndex: 1000, fontWeight: '600' }
-      }, language === 'en' ? '🇧🇷' : '🇬🇧'),
+        'aria-label': t(language, 'common.languageToggleAria')
+      }, language === 'en' ? '🇧🇷 PT' : '🇬🇧 EN'),
 
       // Hero section with gradient glass card
       React.createElement('section', { className: 'hero hero-gradient glass-card' },
@@ -536,9 +535,8 @@
         React.createElement('button', {
           className: 'language-toggle-btn',
           onClick: toggleLanguage,
-          'aria-label': t(language, 'common.languageToggleAria'),
-          style: { position: 'absolute', top: '8px', right: '60px', width: '36px', height: '36px', borderRadius: '50%', background: theme === 'dark' ? 'rgba(30, 41, 59, 0.6)' : 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: theme === 'dark' ? '1px solid rgba(148, 163, 184, 0.2)' : '1px solid rgba(0, 0, 0, 0.08)', color: theme === 'dark' ? '#e2e8f0' : '#1a1a1a', fontSize: '0.65rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', zIndex: 100, fontWeight: '600' }
-        }, language === 'en' ? '🇧🇷' : '🇬🇧')
+          'aria-label': t(language, 'common.languageToggleAria')
+        }, language === 'en' ? '🇧🇷 PT' : '🇬🇧 EN')
       ),
 
       // Presentation card
@@ -732,9 +730,8 @@
       React.createElement('button', {
         className: 'language-toggle-btn',
         onClick: toggleLanguage,
-        'aria-label': t(language, 'common.languageToggleAria'),
-        style: { position: 'fixed', top: '1.5rem', right: '80px', width: '48px', height: '48px', borderRadius: '50%', background: theme === 'dark' ? 'rgba(30, 41, 59, 0.6)' : 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: theme === 'dark' ? '1px solid rgba(148, 163, 184, 0.2)' : '1px solid rgba(0, 0, 0, 0.08)', color: theme === 'dark' ? '#e2e8f0' : '#1a1a1a', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', zIndex: 1000, fontWeight: '600' }
-      }, language === 'en' ? '🇧🇷' : '🇬🇧'),
+        'aria-label': t(language, 'common.languageToggleAria')
+      }, language === 'en' ? '🇧🇷 PT' : '🇬🇧 EN'),
 
       React.createElement('div', { className: 'app-footer-line' },
         React.createElement('span', null, `${t(language, 'common.footer')} • ${getAppVersion()}`),
@@ -836,9 +833,8 @@
       React.createElement('button', {
         className: 'language-toggle-btn',
         onClick: toggleLanguage,
-        'aria-label': t(language, 'common.languageToggleAria'),
-        style: { position: 'fixed', top: '1.5rem', right: '80px', width: '48px', height: '48px', borderRadius: '50%', background: theme === 'dark' ? 'rgba(30, 41, 59, 0.6)' : 'rgba(255, 255, 255, 0.95)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', border: theme === 'dark' ? '1px solid rgba(148, 163, 184, 0.2)' : '1px solid rgba(0, 0, 0, 0.08)', color: theme === 'dark' ? '#e2e8f0' : '#1a1a1a', fontSize: '0.75rem', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.3s ease', zIndex: 1000, fontWeight: '600' }
-      }, language === 'en' ? '🇧🇷' : '🇬🇧'),
+        'aria-label': t(language, 'common.languageToggleAria')
+      }, language === 'en' ? '🇧🇷 PT' : '🇬🇧 EN'),
 
       React.createElement('div', { className: 'app-footer-line' },
         React.createElement('span', null, `${t(language, 'common.footer')} • ${getAppVersion()}`),

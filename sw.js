@@ -1,5 +1,5 @@
 // Cache name unique to this quiz PWA
-const VERSION = "v202512102020"; const CACHE_NAME = `quiz-modern-cache-${VERSION}`;
+const VERSION = "v202512111000"; const CACHE_NAME = `quiz-modern-cache-${VERSION}`;
 
 // List of files to precache for offline use.  Includes core app files, data files,
 // hero image, audio description, and remote libraries loaded via CDN.

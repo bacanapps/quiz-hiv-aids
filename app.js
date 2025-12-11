@@ -600,10 +600,10 @@
         AnalyticsTracker.trackQuestionView(
           current.id,
           currentIndex + 1,
-          current.prompt
+          language === 'en' && current.promptEn ? current.promptEn : current.prompt
         );
       }
-    }, [currentIndex, selected]);
+    }, [currentIndex, selected, language]);
 
     if (!questions || questions.length === 0) {
       return React.createElement('div', { className: 'min-h-screen flex items-center justify-center' },
@@ -677,7 +677,7 @@
           React.createElement('div', { className: 'text-gray-400 text-sm' }, `${t(language, 'quiz.scoreLabel')}: ${score}/${currentIndex + (answered ? 1 : 0)}`)
         ),
         React.createElement('div', { className: 'flex items-start justify-between gap-4 mb-6' },
-          React.createElement('h2', { className: 'text-2xl font-semibold flex-1 quiz-question-text' }, current.prompt),
+          React.createElement('h2', { className: 'text-2xl font-semibold flex-1 quiz-question-text' }, language === 'en' && current.promptEn ? current.promptEn : current.prompt),
           showAudioButton && React.createElement(AudioButton, {
             src: `assets/audio/${current.id}.mp3`,
             ariaLabel: t(language, 'quiz.listenQuestion'),
@@ -685,7 +685,7 @@
           })
         ),
         React.createElement('div', { className: 'space-y-4' },
-          current.choices.map((choice, idx) => {
+          (language === 'en' && current.choicesEn ? current.choicesEn : current.choices).map((choice, idx) => {
             // Determine styling based on answer state
             let optionClasses = 'w-full block text-left px-4 py-3 rounded-lg border transition-colors ';
             if (answered) {

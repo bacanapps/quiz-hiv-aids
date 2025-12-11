@@ -1,6 +1,8 @@
 {
   "title": "Quiz da Prevenção de HIV e Aids",
+  "titleEn": "HIV and AIDS Prevention Quiz",
   "introHtml": "<p>Embora as pessoas digam ter boas informações sobre o HIV e a aids, na prática muitas ideias falsas continuam circulando. Quarenta anos após os primeiros casos de HIV, infelizmente, o estigma e a discriminação permanecem na sociedade.</p><p>Os avanços científicos evidenciam que não há risco de transmissão sexual do HIV quando as pessoas fazem uso regular da terapia antirretroviral, mantendo carga viral indetectável. Apesar disso, os equívocos persistem. Pior: a falta de informação aumenta, especialmente entre os jovens, que estão particularmente expostos.</p><p>Este quiz foi proposto com o objetivo de desfazer mitos em torno do HIV e encorajar as pessoas a se informarem, fazerem o teste, se prevenirem e conhecerem os direitos das pessoas vivendo com HIV ou aids.</p>",
+  "introHtmlEn": "<p>Although people say they are well informed about HIV and AIDS, in fact many misconceptions continue to circulate. Forty years after the first cases of HIV, unfortunately, stigma and discrimination still remain in society.</p><p>Scientific advances show that there is no risk of sexual transmission of HIV when people regularly use antiretroviral therapy and maintain an undetectable viral load. Despite this, misconceptions persist. Worse still, the lack of information is increasing, especially among young people, who are particularly vulnerable.</p><p>This quiz was designed to dispel myths surrounding HIV and encourage everyone to get informed, get tested, prevent infection, and learn about the rights of people living with HIV or AIDS.</p>",
   "audioDescription": {
     "src": "assets/audio/presentation.mp3",
     "durationSec": 30

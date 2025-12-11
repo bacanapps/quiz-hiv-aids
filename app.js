@@ -13,7 +13,7 @@
 
   // ====== APP VERSION ======
   // Update this manually when deploying to reflect last GitHub update
-  const APP_VERSION = '11/12/2025, 10:00';
+  const APP_VERSION = '11/12/2025, 11:11';
   const getAppVersion = () => {
     return `(v. ${APP_VERSION})`;
   };
@@ -306,7 +306,7 @@
         voltar: 'Back'
       },
       home: {
-        heroTitle: 'QUIZ',
+        heroTitle: 'HIV AND AIDS PREVENTION QUIZ',
         heroDesc: 'Test your knowledge about HIV and AIDS.',
         cardApresentacao: {
           title: 'Introduction',
@@ -318,7 +318,7 @@
         }
       },
       apresentacao: {
-        title: 'Introduction',
+        title: 'Presentation',
         subtitle: 'HIV/AIDS Educational Quiz',
         loading: 'Loading…',
         audioBtnPlay: '▶️ Audio Description',

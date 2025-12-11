@@ -81,13 +81,13 @@
     "promptEn": "Is HIV restricted to specific groups, such as homosexuals or intravenous drug users?",
     "choices": [
       "A infecção pode ocorrer em qualquer pessoa.",
-      "O vírus só circula entre populações consideradas de "alto risco".",
+      "O vírus só circula entre populações consideradas de \"alto risco\".",
       "Está presente exclusivamente entre homens que fazem sexo com homens.",
       "Afeta apenas pessoas que usam drogas injetáveis."
     ],
     "choicesEn": [
       "Anyone can become infected.",
-      "The virus only circulates among populations considered to be \"high risk.\"",
+      "The virus only circulates among populations considered to be \"high risk\".",
       "HIV is found exclusively among men who have sex with men.",
       "The virus only affects people who use injectable drugs."
     ],

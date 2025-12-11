@@ -2,11 +2,18 @@
   {
     "id": "q1",
     "prompt": "É possível se infectar HIV em situações como dar a mão, usar banheiro público ou ficar perto de alguém que tosse?",
+    "promptEn": "Is it possible to become infected with HIV in situations such as shaking hands, using a public restroom, or standing near someone who is coughing?",
     "choices": [
       "O vírus pode circular no ar ou por contato físico direto.",
       "Há risco quando se compartilham roupas, toalhas ou copos.",
       "A transmissão acontece somente por fluidos corporais específicos, como em relações sexuais sem o uso do preservativo ou PrEP, pelo compartilhamento de seringas contaminadas ou via transmissão vertical (durante a gravidez, parto ou amamentação).",
       "Contatos sociais próximos, como abraços ou beijos, já são suficientes para a transmissão."
+    ],
+    "choicesEn": [
+      "The virus can spread through the air or through direct physical contact.",
+      "There is a risk when sharing clothes, towels, or cups.",
+      "Transmission occurs only through specific bodily fluids, such as during sexual intercourse without the use of condoms or PrEP, through the sharing of contaminated syringes, or via vertical transmission (during pregnancy, childbirth, or breastfeeding).",
+      "Close social contact, such as hugs or kisses, is sufficient for transmission."
     ],
     "correctIndex": 2,
     "explanation": ""
@@ -14,11 +21,18 @@
   {
     "id": "q2",
     "prompt": "HIV e aids são a mesma coisa?",
+    "promptEn": "Are HIV and AIDS the same thing?",
     "choices": [
       "O HIV é o vírus; a aids é o estágio avançado da infecção, quando o sistema imunológico já está comprometido.",
       "Os dois nomes se referem exatamente à mesma doença.",
       "HIV é apenas o termo científico usado no lugar de aids.",
       "Ter HIV significa, automaticamente, estar em fase de aids."
+    ],
+    "choicesEn": [
+      "HIV is the virus; AIDS is the advanced stage of infection, when the immune system is already compromised.",
+      "The two names refer to exactly the same disease.",
+      "HIV is just the scientific term used instead of AIDS.",
+      "Having HIV automatically means being in the AIDS stage."
     ],
     "correctIndex": 0,
     "explanation": ""
@@ -26,11 +40,18 @@
   {
     "id": "q3",
     "prompt": "O beijo pode transmitir HIV?",
+    "promptEn": "Can kissing transmit HIV?",
     "choices": [
       "Sim, o beijo pode transmitir por causa da saliva, mas apenas em beijos profundos.",
       "O vírus pode passar caso a outra pessoa esteja gripada ou tossindo.",
       "O beijo, assim como abraços e o compartilhamento de talheres, não representa risco de infecção pelo HIV.",
       "Qualquer contato social próximo tem potencial de transmissão."
+    ],
+    "choicesEn": [
+      "Yes, HIV can be transmitted through kissing because of saliva, but only through deep kissing.",
+      "The virus can be transmitted through kissing if the other person has the flu or is coughing.",
+      "Kissing, hugging, and sharing cutlery do not pose a risk of HIV infection.",
+      "Any close social contact has the potential for transmission."
     ],
     "correctIndex": 2,
     "explanation": ""
@@ -38,11 +59,18 @@
   {
     "id": "q4",
     "prompt": "Um mosquito pode transmitir HIV ao picar diferentes pessoas?",
+    "promptEn": "Can a mosquito transmit HIV by biting different people?",
     "choices": [
       "Em áreas tropicais, onde há muitos mosquitos, o risco é maior.",
       "Como eles picam várias pessoas, acabam carregando sangue contaminado de uma para outra.",
       "Mosquitos não transmitem HIV, pois o vírus não sobrevive nem se multiplica dentro deles.",
       "Só haveria transmissão se a pessoa tivesse alta carga viral no sangue."
+    ],
+    "choicesEn": [
+      "In tropical areas, where there are many mosquitoes, the risk is greater.",
+      "Since they bite several people, they end up carrying contaminated blood from one to another.",
+      "Mosquitoes do not transmit HIV, as the virus cannot survive or multiply inside them.",
+      "Transmission through mosquito bites only occurs if the person has a high viral load in their blood."
     ],
     "correctIndex": 2,
     "explanation": ""
@@ -50,11 +78,18 @@
   {
     "id": "q5",
     "prompt": "O HIV é restrito a grupos específicos, como pessoas homossexuais ou usuárias de drogas injetáveis?",
+    "promptEn": "Is HIV restricted to specific groups, such as homosexuals or intravenous drug users?",
     "choices": [
       "A infecção pode ocorrer em qualquer pessoa.",
-      "O vírus só circula entre populações consideradas de “alto risco”.",
+      "O vírus só circula entre populações consideradas de "alto risco".",
       "Está presente exclusivamente entre homens que fazem sexo com homens.",
       "Afeta apenas pessoas que usam drogas injetáveis."
+    ],
+    "choicesEn": [
+      "Anyone can become infected.",
+      "The virus only circulates among populations considered to be \"high risk.\"",
+      "HIV is found exclusively among men who have sex with men.",
+      "The virus only affects people who use injectable drugs."
     ],
     "correctIndex": 0,
     "explanation": ""
@@ -62,11 +97,18 @@
   {
     "id": "q6",
     "prompt": "É possível identificar uma pessoa vivendo com HIV apenas pela aparência física?",
+    "promptEn": "Is it possible to identify a person living with HIV solely by their physical appearance?",
     "choices": [
       "Existem sinais típicos, visíveis em todos os casos.",
       "Mudanças no corpo ou no comportamento já são suficientes para suspeitar.",
       "Apenas o teste pode confirmar a infecção.",
       "Pessoas com HIV ou aids sempre apresentam sintomas claros desde o início."
+    ],
+    "choicesEn": [
+      "There are typical signs that are visible in all cases.",
+      "Changes in the body or behavior are enough to raise suspicion.",
+      "Only testing can confirm infection.",
+      "People with HIV or AIDS always show clear symptoms from the outset."
     ],
     "correctIndex": 2,
     "explanation": ""
@@ -74,11 +116,18 @@
   {
     "id": "q7",
     "prompt": "Qual é a eficácia dos preservativos na prevenção do HIV?",
+    "promptEn": "How effective are condoms in preventing HIV?",
     "choices": [
       "Quando usados de forma correta, são altamente eficazes contra HIV, outras ISTs e gravidez indesejada.",
       "O vírus atravessa o látex, reduzindo bastante a proteção.",
       "Somente os preservativos masculinos funcionam; os femininos não oferecem segurança.",
       "Isoladamente, não protegem; só funcionam quando combinados com outros métodos."
+    ],
+    "choicesEn": [
+      "When used correctly, they are highly effective against HIV, other STIs, and unwanted pregnancy.",
+      "The virus passes through latex, significantly reducing protection.",
+      "Only male condoms work; female condoms do not offer protection.",
+      "On their own, they do not protect; they only work when combined with other methods."
     ],
     "correctIndex": 0,
     "explanation": ""
@@ -86,11 +135,18 @@
   {
     "id": "q8",
     "prompt": "Qual a importância de fazer o teste de HIV?",
+    "promptEn": "Why is it important to get tested for HIV?",
     "choices": [
       "Serve apenas para quem apresenta sintomas da doença.",
       "Se o resultado for positivo, não há muito a ser feito.",
       "Permite conhecer o diagnóstico da infecção pelo HIV e iniciar o tratamento rapidamente.",
       "O teste substitui o uso do preservativo."
+    ],
+    "choicesEn": [
+      "It is only useful for those who show symptoms of the disease.",
+      "If the result is positive, there is not much that can be done.",
+      "It allows you to find out your HIV status and start treatment quickly.",
+      "The test replaces the use of condoms."
     ],
     "correctIndex": 2,
     "explanation": ""
@@ -98,11 +154,18 @@
   {
     "id": "q9",
     "prompt": "O que significa a sigla i = i = 0 (indetectável = intransmissível = zero)?",
+    "promptEn": "What does the acronym I = I = 0 (undetectable = untransmittable = zero) mean?",
     "choices": [
       "Que a pessoa não tem mais HIV no organismo.",
       "Que pessoas vivendo com HIV ou aids que estão em uso regular do tratamento e atingem carga viral indetectável, não transmitem o HIV nas relações sexuais.",
       "Que a infecção foi curada.",
       "Que não há mais necessidade de usar preservativos ou continuar tomando os medicamentos."
+    ],
+    "choicesEn": [
+      "That the person no longer has HIV in their body.",
+      "That people living with HIV or AIDS who are regularly taking treatment and have an undetectable viral load do not transmit HIV through sexual intercourse.",
+      "That the infection has been cured.",
+      "That there is no longer any need to use condoms or continue taking medication."
     ],
     "correctIndex": 1,
     "explanation": ""
@@ -110,11 +173,18 @@
   {
     "id": "q10",
     "prompt": "Uma pessoa vivendo com HIV ou aids pode transmitir o vírus para o bebê durante a gestação ou amamentação?",
+    "promptEn": "Can a person living with HIV or AIDS transmit the virus to their baby during pregnancy or breastfeeding?",
     "choices": [
       "O risco existe apenas se o parto não for cesariana.",
       "Não há risco em nenhuma situação.",
       "Sem tratamento, há possibilidade de transmissão vertical, mas com a terapia correta e carga viral indetectável, o risco é praticamente zero.",
       "Toda gestação de pessoa vivendo com HIV ou aids resulta em transmissão para o bebê."
+    ],
+    "choicesEn": [
+      "The risk exists only if the delivery is not by C-section.",
+      "There is no risk in any situation.",
+      "Without treatment, there is a possibility of vertical transmission, but with the correct therapy and an undetectable viral load, the risk is virtually zero.",
+      "Every pregnancy in a person living with HIV or AIDS results in transmission to the baby."
     ],
     "correctIndex": 2,
     "explanation": ""
@@ -122,11 +192,18 @@
   {
     "id": "q11",
     "prompt": "Já existe cura ou vacina para HIV e aids?",
+    "promptEn": "Is there already a cure or vaccine for HIV and AIDS?",
     "choices": [
       "Há uma vacina já disponível e em uso.",
       "Ainda não existe cura, mas os antirretrovirais mantêm a carga viral indetectável, sem risco de comprometimento da imunidade.",
       "Existe cura parcial, disponível em alguns países.",
       "Uma vacina foi criada, mas apresenta eficácia muito baixa."
+    ],
+    "choicesEn": [
+      "A vaccine is already available and in use.",
+      "There is still no cure, but antiretroviral drugs keep the viral load undetectable, without risk of compromising immunity.",
+      "A partial cure is available in some countries.",
+      "A vaccine has been developed, but it is not very effective."
     ],
     "correctIndex": 1,
     "explanation": ""

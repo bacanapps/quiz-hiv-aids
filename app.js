@@ -549,7 +549,7 @@
         ),
         React.createElement('div', {
           className: 'presentation-textblock',
-          dangerouslySetInnerHTML: { __html: presentation.introHtml }
+          dangerouslySetInnerHTML: { __html: language === 'en' && presentation.introHtmlEn ? presentation.introHtmlEn : presentation.introHtml }
         }),
         showAudioButton && audioSrc &&
           React.createElement('div', { className: 'audio-row' },
